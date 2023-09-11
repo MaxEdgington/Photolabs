@@ -5,19 +5,20 @@ import '../styles/PhotoFavButton.scss';
 
 
 
-function PhotoFavButton() {
+function PhotoFavButton({ selected, onClick, likedPhotos }) {
 
-  const [selected, setSelected] = useState(false);
+  // const [selected, setSelected] = useState(false);
 
-  const onClick = () => {
-    setSelected(!selected); // set isFav to be the opposite of what it currently is
-    console.log('Icon clicked!', selected); // selected shows that the states are changing 
-  };
+  // const onClick = () => {
+  //   setSelected(!selected); // set isFav to be the opposite of what it currently is
+  //   console.log('Icon clicked!', selected); // selected shows that the states are changing 
+  // };
+  
 
   return (
     <div className="photo-list__fav-icon" onClick={onClick}>
       <div className="photo-list__fav-icon-svg" >
-        <FavIcon selected={selected}/>
+        <FavIcon selected={selected} />
       </div>
     </div>
   );
