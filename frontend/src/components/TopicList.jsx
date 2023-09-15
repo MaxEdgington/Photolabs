@@ -2,32 +2,16 @@ import React from "react";
 
 import "../styles/TopicList.scss";
 import TopicListItem from "./TopicListItem";
-import PhotoFavButton from "./PhotoFavButton";
-import topics from "mocks/topics";
-
-const sampleDataForTopicList = [
-  {
-    id: "1",
-    slug: "topic-1",
-    title: "Nature",
-  },
-  {
-    id: "2",
-    slug: "topic-2",
-    title: "Travel",
-  },
-  {
-    id: "3",
-    slug: "topic-3",
-    title: "People",
-  },
-];
+import useApplicationData from "hooks/useApplicationData";
 
 const TopicList = function(props) {
 
-  const list = topics.map(topic => {
-    console.log(topic);
-    return <TopicListItem key={topic.id} label={topic.title} />;
+  const { topicData } = useApplicationData();
+
+
+  const list = topicData.map(topic => {
+    // console.log(topic);
+    return <TopicListItem key={topic.id} id={topic.id} label={topic.title} getPhotosByTopics={props.getPhotosByTopics} />;
   });
 
 

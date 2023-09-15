@@ -20,6 +20,7 @@ const HomeRoute = (props) => {
     likedPhotos: props.likedPhotos,
     setLikedPhotos: props.setLikedPhotos,
     toggleLikedPhotos: props.toggleLikedPhotos,
+    getPhotosByTopics: props.getPhotosByTopics
   };
 
   // creating child props that contains state and also the function we just made 

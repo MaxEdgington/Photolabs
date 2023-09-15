@@ -39,15 +39,16 @@ const PhotoDetailsModal = (props) => {
             <span className="photo-details-modal__photographer-location">{props.selectedPhoto.location.city}, {props.selectedPhoto.location.country} </span>
           </div>
         </div>
-      </div>
-      <div className="photo-details-modal__header">
-        <h2>Similar Photos</h2>
-      </div>
-      <div className="photo-details-modal__images">
+        <div className="photo-details-modal__header">
+          <h2>Similar Photos</h2>
+        </div>
+        <div className="photo-details-modal__images">
 
 
 
-        <PhotoList  {...childProps} setShowModal={() => { }} setSelectedPhoto={() => { }} selectedPhoto={props.selectedPhoto} photos={Object.values(props.selectedPhoto.similar_photos)} />
+          <PhotoList  {...childProps} setShowModal={() => { }} setSelectedPhoto={() => { }} selectedPhoto={props.selectedPhoto} photos={Object.values(props.selectedPhoto.similar_photos)} />
+          
+        </div>
       </div>
     </div>
 

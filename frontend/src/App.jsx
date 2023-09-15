@@ -1,18 +1,42 @@
 import React, { useState } from 'react';
-
-import PhotoListItem from './components/PhotoListItem';
 import './App.scss';
-import PhotoList from 'components/PhotoList';
-import TopicList from 'components/TopicList';
-import TopNavigation from 'components/TopNavigationBar';
 import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
-import photos from "mocks/photos";
-
+import useApplicationData from './hooks/useApplicationData';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  // use states at the top functions after 
+
+  const { likedPhotos, selectedPhoto, showModal, setLikedPhotos, photoData, setSelectedPhoto, setShowModal, toggleLikedPhotos, getPhotosByTopics } = useApplicationData();
+
+
+
+
+  return (
+    <div className="App">
+      <HomeRoute toggleLikedPhotos={toggleLikedPhotos} photos={photoData} likedPhotos={likedPhotos} setLikedPhotos={setLikedPhotos} setShowModal={setShowModal} setSelectedPhoto={setSelectedPhoto} selectedPhoto={selectedPhoto} getPhotosByTopics={getPhotosByTopics} />
+
+      {showModal ? <PhotoDetailsModal toggleLikedPhotos={toggleLikedPhotos} likedPhotos={likedPhotos} setLikedPhotos={setLikedPhotos} selectedPhoto={selectedPhoto} setShowModal={setShowModal}  ></PhotoDetailsModal > : ""}
+
+    </div>
+  );
+
+};
+
+export default App;
+
+// if I'm not getting an error, I look at what's directly reponsible for what could be throwing the errors, go through and see if things are coming the way I expect them too 
+
+// in our case we changed the prop so we had to change the prop information where it was being called in the state. 
+
+
+
+
+// notes from before transfering states and state changers to custom hook
+
+/* 
+
+ // use states at the top functions after 
   const [likedPhotos, setLikedPhotos] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState(null); // added into state Selected Photo which will tell us ID of selected photo
   const [showModal, setShowModal] = useState(false);
@@ -45,20 +69,4 @@ const App = () => {
 
 
 
-
-  return (
-    <div className="App">
-      <HomeRoute toggleLikedPhotos={toggleLikedPhotos} photos={photos} likedPhotos={likedPhotos} setLikedPhotos={setLikedPhotos} setShowModal={setShowModal} setSelectedPhoto={setSelectedPhoto} selectedPhoto={selectedPhoto} />
-
-      {showModal ? <PhotoDetailsModal toggleLikedPhotos={toggleLikedPhotos} likedPhotos={likedPhotos} setLikedPhotos={setLikedPhotos} selectedPhoto={selectedPhoto} setShowModal={setShowModal}  ></PhotoDetailsModal > : ""}
-
-    </div>
-  );
-
-};
-
-export default App;
-
-// if I'm not getting an error, I look at what's directly reponsible for what could be throwing the errors, go through and see if things are coming the way I expect them too 
-
-// in our case we changed the prop so we had to change the prop information where it was being called in the state. 
+*/ 
