@@ -1,11 +1,11 @@
 import React from "react";
-
 import "./App.scss";
 import HomeRoute from "routes/HomeRoute";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
 import useApplicationData from "./hooks/useApplicationData";
 
 const App = () => {
+  // Destructure state and functions from custom hook
   const {
     likedPhotos,
     selectedPhoto,
@@ -20,6 +20,7 @@ const App = () => {
 
   return (
     <div className="App">
+      {/* Render HomeRoute with necessary props */}
       <HomeRoute
         toggleLikedPhotos={toggleLikedPhotos}
         photos={photoData}
@@ -31,6 +32,7 @@ const App = () => {
         getPhotosByTopics={getPhotosByTopics}
       />
 
+      {/* Conditionally render PhotoDetailsModal */}
       {showModal ? (
         <PhotoDetailsModal
           toggleLikedPhotos={toggleLikedPhotos}

@@ -1,10 +1,12 @@
 import React from "react";
-
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
+  // Determine if the photo is in the likedPhotos list
   const selected = props.likedPhotos.includes(props.item.id);
+
+  // Handle click to show modal
   const click = function () {
     props.setSelectedPhoto(props.item);
     props.setShowModal(true);
@@ -12,6 +14,7 @@ const PhotoListItem = (props) => {
 
   return (
     <div className="photo-list__item">
+      {/* Render favorite button and photo */}
       <div>
         <PhotoFavButton
           onClick={() => props.toggleLikedPhotos(props.item.id)}
@@ -24,6 +27,8 @@ const PhotoListItem = (props) => {
           onClick={click}
         />
       </div>
+
+      {/* Render user details */}
       <div className="photo-list__user-details ">
         <img
           className="photo-list__user-profile"

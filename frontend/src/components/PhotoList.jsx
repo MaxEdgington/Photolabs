@@ -1,9 +1,9 @@
 import React from "react";
-
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
 
 const PhotoList = (props) => {
+  // Map through photos to generate list items
   const renderedPhotos = props.photos.map((item, i) => {
     return (
       <PhotoListItem

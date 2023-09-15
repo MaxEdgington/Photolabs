@@ -1,5 +1,6 @@
 import { useReducer, useEffect } from "react";
 
+// Define action types
 export const ACTIONS = {
   FAV_PHOTO_ADDED: "FAV_PHOTO_ADDED",
   FAV_PHOTO_REMOVED: "FAV_PHOTO_REMOVED",
@@ -11,6 +12,7 @@ export const ACTIONS = {
   DISPLAY_PHOTO_DETAILS: "DISPLAY_PHOTO_DETAILS",
 };
 
+// Reducer function handling state updates
 function reducer(state, action) {
   switch (action.type) {
     case ACTIONS.FAV_PHOTO_ADDED:
@@ -43,7 +45,6 @@ function reducer(state, action) {
       return { ...state, topicData: action.payload.topicData };
 
     case ACTIONS.GET_PHOTOS_BY_TOPICS:
-      console.log(action.payload, "action.payload");
       return { ...state, photoData: action.payload };
 
     default:
@@ -51,6 +52,7 @@ function reducer(state, action) {
   }
 }
 
+// Custom hook managing application data
 export default function useApplicationData() {
   const initialState = {
     likedPhotos: [],
@@ -61,8 +63,10 @@ export default function useApplicationData() {
     topicData: [],
   };
 
+  // Initialize state using useReducer
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  // Fetch photo data on mount
   useEffect(() => {
     fetch("http://localhost:8001/api/photos")
       .then((res) => {
@@ -74,6 +78,7 @@ export default function useApplicationData() {
       });
   }, []);
 
+  // Fetch topic data on mount
   useEffect(() => {
     fetch("http://localhost:8001/api/topics")
       .then((res) => res.json())
@@ -82,7 +87,9 @@ export default function useApplicationData() {
       });
   }, []);
 
+  // Function to toggle liked photos
   const toggleLikedPhotos = function (photoId) {
+    // Logic to add or remove photo from liked list
     if (!state.likedPhotos.includes(photoId)) {
       dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: { photoId } });
     } else {
@@ -90,7 +97,9 @@ export default function useApplicationData() {
     }
   };
 
+  // Function to get photos by topic
   const getPhotosByTopics = function (selectedTopic) {
+    // Fetch and dispatch photos by topic
     fetch(`http://localhost:8001/api/topics/photos/${selectedTopic}`)
       .then((res) => {
         return res.json();
@@ -103,14 +112,17 @@ export default function useApplicationData() {
       });
   };
 
+  // Set selected photo
   const setSelectedPhoto = function (selectedPhoto) {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { selectedPhoto } });
   };
 
+  // Show or hide modal
   const setShowModal = function (showModal) {
     dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: { showModal } });
   };
 
+  // Expose state and functions to component
   return {
     likedPhotos: state.likedPhotos,
     selectedPhoto: state.selectedPhoto,
