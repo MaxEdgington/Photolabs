@@ -1,6 +1,6 @@
 # react-photolabs
 
-The PhotoLabs project for the Web Development React course programming.
+
 
 ![Animation Demo](https://github.com/MaxEdgington/photolabs-starter/raw/main/video-folder/Animation.gif)
 
